@@ -1,0 +1,20 @@
+.table .thead-dark th {
+    border-color:#212529;
+}
+
+.title {
+    font-weight: bold;
+}
+
+.station {
+    color: aliceblue;
+    font-size: 50px;
+    font-weight: bolder;
+    text-align: center;
+    background: url(../images/train.gif) center no-repeat no-repeat;
+    height: 300px;
+}
+
+.addTrain {
+    border-color: grey;
+}
