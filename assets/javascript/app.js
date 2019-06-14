@@ -25,7 +25,6 @@ $("#submit").click(function(event){
         destination: destinationInput,
         frequency: frequencyInput,
         nextTrainInput: nextTrain,
-        minutesAwayInput: minutesAway,
     });
 
     // Clears all of the text-boxes
@@ -41,8 +40,17 @@ database.ref().on("child_added", function(childSnapshot) {
     var destinationInput = childSnapshot.val().destination;
     var frequencyInput = childSnapshot.val().frequency;
     var nextTrain = childSnapshot.val().nextTrainInput;
-    var minutesAway = childSnapshot.val().minutesAwayInput;
     
+    
+    var firstTimeConverted = moment(nextTrain, "HH:mm").subtract(1, "years"); // First Time (pushed back 1 year to make sure it comes before current time)
+    var currentTime = moment(); // Current Time
+    var diffTime = currentTime.diff(moment(firstTimeConverted), "minutes"); // Difference between the times
+    var tRemainder = diffTime % frequencyInput; // Time apart (remainder)
+    var minutesAway = frequencyInput - tRemainder; // Minute Until Train
+    var nextTrainInput = moment().add(minutesAway, "minutes"); // Next Train
+    var nextTrain = moment(nextTrainInput).format("hh:mm A"); //Convert next train time format
+
+
     // Create the new row
     $("#trainTable > tbody").append("<tr><td>" + trainNameInput + "</td><td>" + destinationInput + "</td><td>" + frequencyInput + "</td><td>" + nextTrain + "</td><td>" + minutesAway + " minutes" + "</td></tr>");
 
