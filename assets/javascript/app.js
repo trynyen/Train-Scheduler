@@ -9,37 +9,24 @@ $("#submit").click(function(event){
     var frequencyInput = $("#frequencyInput").val().trim();
     var firstTrainTime = $("#firstTrainTime").val().trim();
 
-    // First Time (pushed back 1 year to make sure it comes before current time)
-    var firstTimeConverted = moment(firstTrainTime, "HH:mm").subtract(1, "years");
-    console.log(firstTimeConverted);
-
-    // Current Time
-    var currentTime = moment();
-
-    // Difference between the times
-    var diffTime = currentTime.diff(moment(firstTimeConverted), "minutes");
-
-    // Time apart (remainder)
-    var tRemainder = diffTime % frequencyInput;
     
-    // Minute Until Train
-    var minutesAway = frequencyInput - tRemainder;
+    var firstTimeConverted = moment(firstTrainTime, "HH:mm").subtract(1, "years"); // First Time (pushed back 1 year to make sure it comes before current time)
+    var currentTime = moment(); // Current Time
+    var diffTime = currentTime.diff(moment(firstTimeConverted), "minutes"); // Difference between the times
+    var tRemainder = diffTime % frequencyInput; // Time apart (remainder)
+    var minutesAway = frequencyInput - tRemainder; // Minute Until Train
+    var nextTrainInput = moment().add(minutesAway, "minutes"); // Next Train
+    var nextTrain = moment(nextTrainInput).format("hh:mm A"); //Convert next train time format
 
-    // Next Train & changed time format
-    var nextTrainInput = moment().add(minutesAway, "minutes");
-    var nextTrain = moment(nextTrainInput).format("hh:mm A");
-
-    var newTrain = {
+  
+    // Code for "Setting values in the database"
+    database.ref().push({
         trainName: trainNameInput,
         destination: destinationInput,
         frequency: frequencyInput,
         nextTrainInput: nextTrain,
         minutesAwayInput: minutesAway,
-
-    }
-
-    // Code for "Setting values in the database"
-    database.ref().push(newTrain);
+    });
 
     // Clears all of the text-boxes
     $("#trainNameInput").val("");
@@ -57,7 +44,7 @@ database.ref().on("child_added", function(childSnapshot) {
     var minutesAway = childSnapshot.val().minutesAwayInput;
     
     // Create the new row
-    $("#trainTable > tbody").append("<tr><td>" + trainNameInput + "</td><td>" + destinationInput + "</td><td>" + frequencyInput + "</td><td>" + nextTrain + "</td><td>" + minutesAway + "</td></tr>");
+    $("#trainTable > tbody").append("<tr><td>" + trainNameInput + "</td><td>" + destinationInput + "</td><td>" + frequencyInput + "</td><td>" + nextTrain + "</td><td>" + minutesAway + " minutes" + "</td></tr>");
 
 
 })
