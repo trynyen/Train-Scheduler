@@ -24,11 +24,14 @@
 
     <body>
 
+        <!-- Page Title Section -->
         <div class="container">
             <div class="row">
                 <div class="col station">SPIRITED AWAY</div>
             </div>
             <br>
+
+             <!-- Train Info Section -->
             <div class="row">
                 <!-- Across every breakpoint, use .table-responsive for horizontally scrolling tables -->
                 <div class="table-responsive">
@@ -58,13 +61,12 @@
                         </tbody>
                     </table>
                 </div>
+
+                <!-- Add Train section -->
                 <div class="table-responsive">
-                        <!-- Add .table-hover to enable a hover state on table rows within a <tbody>. -->
-                        <!-- Add .table-bordered for borders on all sides of the table and cells. -->
-                        <table class="table table-hover table-bordered ">
-                            <!--  -->
+                        <!-- Title -->
+                        <table class="table">
                             <thead class="thead-dark">
-                                <!--  -->
                                 <tr>
                                     <th scope="col">Add Train</th>
                                     <th scope="col"></th>
@@ -73,46 +75,38 @@
                                     <th scope="col"></th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <!--  -->
-                                <tr class="title">
-                                    <th>
-                                        <form>
-                                            <div class="form-group">
-                                              <label for="formGroupExampleInput">Train Name</label>
-                                              <input type="text" class="form-control" id="trainNameInput">
-                                            </div>
-                                            <div class="form-group">
-                                              <label for="formGroupExampleInput2">Destination</label>
-                                              <input type="text" class="form-control" id="destinationInput">
-                                            </div>
-                                            <div class="form-group">
-                                              <label for="formGroupExampleInput2">First Train Time</label>
-                                              <input type="text" class="form-control" id="firstTrainTime" placeholder="HH:mm - military time">
-                                            </div>
-                                            <div class="form-group">
-                                              <label for="formGroupExampleInput2">Frequency (min)</label>
-                                              <input type="text" class="form-control" id="frequencyInput">
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="col-sm-10">
-                                                    <button type="button" class="btn btn-dark" id="submit">Submit</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </th>
-                                </tr>
-                                
-                            </tbody>
                         </table>
-                    </div>
+                        <!-- Form -->
+                        <form>
+                            <div class="form-group">
+                                <label for="formGroupExampleInput">Train Name</label>
+                                <input required type="text" class="form-control" id="trainNameInput" placeholder="Enter train name here">
+                            </div>
+                            <div class="form-group">
+                                <label for="formGroupExampleInput2">Destination</label>
+                                <input required type="text" class="form-control" id="destinationInput" placeholder="Enter destination here">
+                            </div>
+                            <div class="form-group">
+                                <label for="formGroupExampleInput2">First Train Time</label>
+                                <input required type="text" class="form-control" id="firstTrainTime" placeholder="Military Time. Eg: 1600">
+                            </div>
+                            <div class="form-group">
+                                <label for="formGroupExampleInput2">Frequency (min)</label>
+                                <input required type="text" class="form-control" id="frequencyInput" placeholder="Enter a number">
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-10">
+                                    <button type="submit" class="btn btn-dark" id="submit">Submit</button>
+                                </div>
+                            </div>
+                        </form>   
+                </div>
             </div>
         </div>
 
         
-        <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 
-
+        <!-- Link JS, Firebase & Momentjs -->
         <script>
             // Your web app's Firebase configuration
             var firebaseConfig = {
@@ -127,6 +121,8 @@
             // Initialize Firebase
             firebase.initializeApp(firebaseConfig);
         </script>
+        <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
         <script src="assets/javascript/app.js"></script>
+
     </body>
 </html>
