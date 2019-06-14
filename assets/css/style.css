@@ -6,15 +6,47 @@
     font-weight: bold;
 }
 
-.station {
-    color: aliceblue;
+#station {
+    color: #f0f8ff85;
+    padding: 80px;
     font-size: 50px;
     font-weight: bolder;
     text-align: center;
     background: url(../images/train.gif) center no-repeat no-repeat;
-    height: 300px;
+    height: 250px;
 }
 
 label {
     font-weight: bold;
 }
+
+/* @keyframes fadeInOut {
+    0% {
+      opacity: 10;
+    }
+    20% {
+        opacity: 20;
+    }
+    40% {
+        opacity: 40;
+      }
+  
+    60% {
+      opacity: 60;
+    }
+  
+    80% {
+      opacity: 80;
+    }
+
+    100% {
+        opacity: 10;
+      }
+
+  }
+
+  #station {
+    animation-name: fadeInOut;
+    animation-duration: 10s;
+  } */
+  
